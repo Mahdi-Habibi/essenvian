@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <title>Document</title>
+    <meta name="description" content="Home page">
+    <meta name="keywords" content="fine perfume company">
+    <title>
+    {% block title %}
+        Essenvian
+    {% endblock title %}
+        </title>
 </head>
 <body>
-    
+    <main>
+        
+        {% block content %}
+            
+        {% endblock content %}
+            
+    </main>
+    <footer>
+        <p>&copy: Essenvian</p>
+    </footer>
 </body>
 </html>
