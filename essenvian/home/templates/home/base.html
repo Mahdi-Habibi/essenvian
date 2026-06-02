@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +11,11 @@
             Essenvian
         {% endblock title %}
     </title>
-    <link rel="stylesheet" href="{% static '' %}">
-    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'style/global.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style/style.css' %}">
 </head>
 <body>
     <main>
-        
         {% block content %}
             
         {% endblock content %}
