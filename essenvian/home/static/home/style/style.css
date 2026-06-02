@@ -1,10 +1,17 @@
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+.navbar__logo {
+  font-size: 2.8rem;
 }
 .navbar__list {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  width: 50%;
+}
+.navbar__link {
+  color: black;
 }/*# sourceMappingURL=style.css.map */
