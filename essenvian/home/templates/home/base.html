@@ -6,10 +6,12 @@
     <meta name="description" content="Home page">
     <meta name="keywords" content="fine perfume company">
     <title>
-    {% block title %}
-        Essenvian
-    {% endblock title %}
-        </title>
+        {% block title %}
+            Essenvian
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static '' %}">
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
 </head>
 <body>
     <main>
@@ -17,7 +19,6 @@
         {% block content %}
             
         {% endblock content %}
-            
     </main>
     <footer>
         <p>&copy: Essenvian</p>
