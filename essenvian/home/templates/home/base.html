@@ -15,13 +15,29 @@
     <link rel="stylesheet" href="{% static 'home/style/style.css' %}">
 </head>
 <body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <figure class="navbar__logo"><span>ESSENVIAN</span></figure>
+                <button class="navbar__toggle" aria-label="Toggle menu">☰</button>
+                <ul class="navbar__list">
+                    <li class="navbar__item"><a href="/" class="navbar__link">Home</a></li>
+                    <li class="navbar__item"><a href="/applications/" class="navbar__link">Applications</a></li>
+                    <li class="navbar__item"><a href="/innovation/" class="navbar__link">Innovation</a></li>
+                    <li class="navbar__item"><a href="/about/" class="navbar__link">About</a></li>
+                    <li class="navbar__item"><a href="/contact/" class="navbar__link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main>
-        {% block content %}
-            
-        {% endblock content %}
+        {% block content %}{% endblock content %}
     </main>
     <footer>
-        <p>&copy: Essenvian</p>
+        <div class="container">
+            <p>&copy; ESSENVIAN</p>
+        </div>
     </footer>
-</body>
+    <script src="{% static 'home/js/app.js' %}"></script>
+    </body>
 </html>

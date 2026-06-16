@@ -1,0 +1,19 @@
+{% extends 'home/base.html' %}
+
+{% block title %}Contact{% endblock title %}
+
+{% block content %}
+<section class="page contact-page">
+  <div class="container">
+    <h1>Contact</h1>
+    {% if success %}
+      <p class="success">Thanks — your message has been sent.</p>
+    {% endif %}
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="button" type="submit">Send</button>
+    </form>
+  </div>
+</section>
+{% endblock content %}
