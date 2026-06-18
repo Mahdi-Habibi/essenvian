@@ -15,10 +15,48 @@ ul, ol {
 }
 .container {
     margin: 0 auto;
+    width: 96%;
     max-width: 114rem;
     &-fluid {
         max-width: 100%;
     }
+}
+
+/* Video background hero */
+.hero--video {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 2;
+}
+
+.hero__inner {
+    position: relative;
+    z-index: 3;
+    color: #000;
+    text-align: center;
 }
 
 // responsive
