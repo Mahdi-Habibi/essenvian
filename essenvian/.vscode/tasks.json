@@ -1,32 +1,18 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "docker-build",
-			"label": "docker-build",
-			"platform": "python",
-			"dockerBuild": {
-				"tag": "essenvian:latest",
-				"dockerfile": "${workspaceFolder}/Dockerfile",
-				"context": "${workspaceFolder}",
-				"pull": true
-			}
-		},
-		{
-			"type": "docker-run",
-			"label": "docker-run: debug",
-			"dependsOn": [
-				"docker-build"
-			],
-			"python": {
-				"args": [
-					"runserver",
-					"0.0.0.0:8000",
-					"--nothreading",
-					"--noreload"
-				],
-				"file": "manage.py"
-			}
-		}
-	]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "npm install",
+      "type": "shell",
+      "command": "npm install",
+      "group": "build"
+    },
+    {
+      "label": "npm start",
+      "type": "shell",
+      "command": "npm start",
+      "isBackground": false,
+      "problemMatcher": []
+    }
+  ]
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Essenvian</title>
+    <link rel="stylesheet" href="/static/style/global.css" />
+    <link rel="stylesheet" href="/home/static/home/style/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <figure class="navbar__logo"><span>ESSENVIAN</span></figure>
+          <button class="navbar__toggle" aria-label="Toggle menu">☰</button>
+          <ul class="navbar__list">
+            <li class="navbar__item"><a href="/" class="navbar__link">Home</a></li>
+            <li class="navbar__item"><a href="/applications" class="navbar__link">Applications</a></li>
+            <li class="navbar__item"><a href="/innovation" class="navbar__link">Innovation</a></li>
+            <li class="navbar__item"><a href="/about" class="navbar__link">About</a></li>
+            <li class="navbar__item"><a href="/contact" class="navbar__link">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page contact-page">
+        <div class="container">
+          <h1>Contact</h1>
+          <p>Share your brief, launch timeline, or product goals. We’ll help shape the right fragrance direction.</p>
+          <!-- CONTACT_SUCCESS -->
+          <form method="post" action="/contact" novalidate>
+            <p>
+              <label for="name">Name</label><br />
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </p>
+            <p>
+              <label for="email">Email</label><br />
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </p>
+            <p>
+              <label for="message">Message</label><br />
+              <textarea id="message" name="message" rows="6" placeholder="Your message" required></textarea>
+            </p>
+            <button class="button" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; ESSENVIAN</p>
+      </div>
+    </footer>
+
+    <script src="/home/static/home/js/app.js"></script>
+  </body>
+</html>

@@ -1,32 +1,70 @@
 html {
   font-size: 62.5%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-size: 1.6rem;
+  line-height: 1.6;
+  color: #1f1f1f;
+  background: #f8f5ef;
 }
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 ul, ol {
   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
 }
 
 .container {
   margin: 0 auto;
-  width: 96%;
-  max-width: 114rem;
+  width: min(96%, 114rem);
 }
 .container-fluid {
   max-width: 100%;
 }
 
-/* Video background hero */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(248, 245, 239, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(31, 31, 31, 0.08);
+}
+
+main {
+  overflow-x: hidden;
+}
+
+section {
+  padding: 8rem 0;
+}
+
+.page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
 .hero--video {
   position: relative;
   overflow: hidden;
@@ -34,6 +72,7 @@ ul, ol {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 }
 
 .hero__video {
@@ -49,21 +88,161 @@ ul, ol {
 
 .hero__overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.4);
+  inset: 0;
+  background: linear-gradient(90deg, rgba(15, 15, 15, 0.62), rgba(15, 15, 15, 0.3));
   z-index: 2;
 }
 
 .hero__inner {
   position: relative;
   z-index: 3;
-  color: #000;
-  text-align: center;
+  color: #fff;
+  text-align: left;
+  max-width: 64rem;
 }
 
+.hero__title {
+  font-size: clamp(3.2rem, 6vw, 5.4rem);
+  line-height: 1.1;
+  margin: 0 0 1.6rem;
+  letter-spacing: -0.03em;
+}
+
+.hero__subtitle {
+  font-size: 1.8rem;
+  margin: 0 0 2.4rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.button,
+.button.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 2.4rem;
+  border-radius: 999px;
+  background: #1f1f1f;
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.button:hover,
+.button:focus-visible,
+.button.secondary:hover,
+.button.secondary:focus-visible {
+  transform: translateY(-2px);
+  background: #3a3a3a;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.button.secondary {
+  background: transparent;
+  color: #1f1f1f;
+  border: 1px solid #1f1f1f;
+  box-shadow: none;
+}
+
+.button.secondary:hover,
+.button.secondary:focus-visible {
+  background: #1f1f1f;
+  color: #fff;
+}
+
+.cards,
+.feature,
+.contact-page,
+.about,
+.applications {
+  background: #f8f5ef;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid rgba(31, 31, 31, 0.08);
+  border-radius: 2rem;
+  padding: 2.4rem;
+  box-shadow: 0 12px 40px rgba(31, 31, 31, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(31, 31, 31, 0.1);
+}
+
+.card h3,
+.page h1,
+section h2 {
+  margin-top: 0;
+  letter-spacing: -0.02em;
+}
+
+form {
+  max-width: 56rem;
+  background: #fff;
+  padding: 2.4rem;
+  border-radius: 2rem;
+  box-shadow: 0 12px 40px rgba(31, 31, 31, 0.06);
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(31, 31, 31, 0.14);
+  border-radius: 1rem;
+  padding: 1.2rem 1.4rem;
+  font: inherit;
+  margin-top: 0.6rem;
+  background: #fcfbf8;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid rgba(31, 31, 31, 0.16);
+  border-color: transparent;
+}
+
+.success-banner {
+  background: #e9f7eb;
+  color: #1f5a2f;
+  border: 1px solid #c7e7cf;
+  padding: 1.2rem 1.4rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+footer {
+  padding: 2rem 0 3rem;
+  color: #5e5e5e;
+  border-top: 1px solid rgba(31, 31, 31, 0.08);
+  background: #f8f5ef;
+}
+
+@media screen and (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hero__inner {
+    text-align: center;
+  }
+  .hero__subtitle {
+    font-size: 1.6rem;
+  }
+  section {
+    padding: 6rem 0;
+  }
+}
 @media screen and (min-width: 1400px) {
   .container {
     max-width: 132rem;

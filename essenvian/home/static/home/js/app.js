@@ -4,29 +4,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	if (toggle && menu) {
 		toggle.addEventListener('click', () => {
-			const expanded = menu.style.display === 'block';
-			menu.style.display = expanded ? 'none' : 'block';
+			const expanded = toggle.getAttribute('aria-expanded') === 'true';
+			menu.classList.toggle('is-open', !expanded);
 			toggle.setAttribute('aria-expanded', String(!expanded));
 		});
 
-		// Close menu when resizing to desktop
 		window.addEventListener('resize', () => {
 			if (window.innerWidth > 768) {
-				menu.style.display = '';
-				toggle.removeAttribute('aria-expanded');
+				menu.classList.remove('is-open');
+				toggle.setAttribute('aria-expanded', 'false');
 			}
 		});
 	}
-
-	// Smooth scroll for internal links
-	document.querySelectorAll('a[href^="#"]').forEach(a => {
-		a.addEventListener('click', function (e) {
-			const target = this.getAttribute('href');
-			if (target && target.startsWith('#')) {
-				e.preventDefault();
-				const el = document.querySelector(target);
-				if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
-			}
-		});
-	});
 });

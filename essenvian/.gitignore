@@ -4,9 +4,27 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 
-# Other files and folders
+# Local environment and tool folders
 .settings/
 .venv/
+.vscode/
+node_modules/
+data/
+coverage/
+*.log
+
+# Environment files and local runtime files
+.env
+.env.*
+!.env.example
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor/OS files
+.DS_Store
+Thumbs.db
 .prettierrc
 
 # Executables
@@ -14,7 +32,3 @@ bin-release/
 *.air
 *.ipa
 *.apk
-
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
