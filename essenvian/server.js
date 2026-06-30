@@ -1,71 +1,41 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
+const { port, publicDir, staticDir, homeStaticDir } = require('./config');
+const { saveMessage } = require('./data/contactStore');
+const { renderPage } = require('./public/pages/page-template');
 
 const app = express();
-const port = process.env.PORT || 4000;
-const dataDir = path.join(__dirname, 'data');
-const dataFilePath = path.join(dataDir, 'contact-messages.json');
+const host = process.env.HOST || '0.0.0.0';
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/static', express.static(path.join(__dirname, 'static')));
-app.use('/home/static', express.static(path.join(__dirname, 'home', 'static')));
-app.use(express.static(path.join(__dirname, 'public')));
-
-function ensureDataFile() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-
-  if (!fs.existsSync(dataFilePath)) {
-    fs.writeFileSync(dataFilePath, '[]', 'utf8');
-  }
-}
-
-function readMessages() {
-  ensureDataFile();
-  return JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
-}
-
-function saveMessage(message) {
-  const messages = readMessages();
-  messages.push(message);
-  fs.writeFileSync(dataFilePath, JSON.stringify(messages, null, 2), 'utf8');
-}
+app.use('/static', express.static(staticDir));
+app.use('/home/static', express.static(homeStaticDir));
+app.use(express.static(publicDir));
 
 function renderContactPage(res, submitted = false) {
-  const filePath = path.join(__dirname, 'public', 'contact.html');
-  fs.readFile(filePath, 'utf8', (err, html) => {
-    if (err) {
-      res.status(500).send('Unable to load contact page.');
-      return;
-    }
+  const successBanner = submitted
+    ? '<div class="success-banner">Thanks — your message has been sent.</div>'
+    : '';
 
-    const successBlock = submitted
-      ? '<div class="success-banner">Thanks — your message has been sent.</div>'
-      : '';
-
-    const updatedHtml = html.replace('<!-- CONTACT_SUCCESS -->', successBlock);
-    res.send(updatedHtml);
-  });
+  renderPage(res, 'contact', { successBanner });
 }
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(publicDir, 'index.html'));
 });
 
 app.get('/applications', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'applications.html'));
+  res.sendFile(path.join(publicDir, 'applications.html'));
 });
 
 app.get('/innovation', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'innovation.html'));
+  res.sendFile(path.join(publicDir, 'innovation.html'));
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'about.html'));
+  res.sendFile(path.join(publicDir, 'about.html'));
 });
 
 app.get('/contact', (req, res) => {
@@ -94,16 +64,23 @@ app.get('/health', (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+  res.status(404).sendFile(path.join(publicDir, '404.html'));
 });
 
-app.listen(port, () => {
-  console.log(`Essenvian Node server listening on port ${port}`);
-}).on('error', (error) => {
-  if (error.code === 'EADDRINUSE') {
-    console.error(`Port ${port} is already in use. Stop the existing process or choose a different PORT.`);
-    process.exit(1);
-  } else {
-    throw error;
-  }
-});
+function startServer(listenPort) {
+  const server = app.listen(listenPort, host, () => {
+    const address = server.address();
+    console.log(`Essenvian Node server listening on http://${host}:${address.port}`);
+  });
+
+  server.on('error', (error) => {
+    if (error.code === 'EADDRINUSE') {
+      console.warn(`Port ${listenPort} is already in use. Trying an available port instead.`);
+      startServer(0);
+    } else {
+      throw error;
+    }
+  });
+}
+
+startServer(port);
