@@ -251,3 +251,124 @@ footer {
         max-width: 132rem;
     }
 }
+
+/* Page transitions */
+body {
+    transition: opacity 420ms cubic-bezier(.22,.9,.32,1), transform 420ms cubic-bezier(.22,.9,.32,1);
+}
+
+body.page-enter {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+body.page-exit {
+    opacity: 0;
+    transform: translateY(-6px);
+}
+
+/* Fade up animation for section items */
+.animate-fade-up {
+    opacity: 0;
+    transform: translateY(12px);
+    will-change: opacity, transform;
+    transition: opacity 640ms cubic-bezier(.22,.9,.32,1) var(--delay, 0ms), transform 640ms cubic-bezier(.22,.9,.32,1) var(--delay, 0ms);
+}
+
+.animate-fade-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body,
+    .animate-fade-up {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Footer styles */
+.site-footer {
+    background: #fff;
+    border-top: 1px solid rgba(31,31,31,0.06);
+    color: #5e5e5e;
+    padding: 3.2rem 0 4rem;
+}
+.site-footer .footer__inner {
+    display: flex;
+    gap: 3.2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.site-footer .footer__col {
+    flex: 1 1 22rem;
+}
+.footer__brand .navbar__logo {
+    margin: 0 0 1rem;
+}
+.footer__desc {
+    margin: 0 0 1rem;
+    color: #6b6b6b;
+}
+.footer__links ul {
+    margin: 0;
+    padding: 0;
+}
+.footer__links li {
+    margin: 0.6rem 0;
+}
+.footer__links a {
+    color: #1f1f1f;
+    opacity: 0.9;
+}
+.footer__contact a {
+    color: #1f1f1f;
+}
+.footer__bottom {
+    margin-top: 2.4rem;
+    border-top: 1px solid rgba(31,31,31,0.04);
+    padding-top: 1.2rem;
+    color: #8a8a8a;
+}
+
+@media screen and (max-width: 768px) {
+    .site-footer .footer__inner {
+        flex-direction: column;
+    }
+}
+
+/* Social links */
+.social-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+.social-list li {
+    list-style: none;
+}
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    background: rgba(31,31,31,0.06);
+    color: #1f1f1f;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+.social-link:hover,
+.social-link:focus {
+    transform: translateY(-3px);
+}
+.social-instagram{ }
+.social-telegram{ }
+.social-whatsapp{ }
+.social-youtube{ }
+.social-facebook{ }
