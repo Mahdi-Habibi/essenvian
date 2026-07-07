@@ -9,7 +9,6 @@ bin-release/
 .venv/
 .vscode/
 node_modules/
-data/
 coverage/
 *.log
 
