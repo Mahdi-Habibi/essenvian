@@ -67,20 +67,6 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(publicDir, '404.html'));
 });
 
-function startServer(listenPort) {
-  const server = app.listen(listenPort, host, () => {
-    const address = server.address();
-    console.log(`Essenvian Node server listening on http://${host}:${address.port}`);
-  });
-
-  server.on('error', (error) => {
-    if (error.code === 'EADDRINUSE') {
-      console.warn(`Port ${listenPort} is already in use. Trying an available port instead.`);
-      startServer(0);
-    } else {
-      throw error;
-    }
-  });
-}
-
-startServer(port);
+app.listen(process.env.PORT || 4000, () => {
+    console.log('Server started');
+});
