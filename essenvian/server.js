@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { port, host, publicDir, staticDir, homeStaticDir } = require('./config');
+const { port, publicDir, staticDir, homeStaticDir } = require('./config');
 const { saveMessage, validateMessage } = require('./data/contactStore');
 const { renderPage, escapeHtml } = require('./public/pages/page-template');
 
@@ -98,6 +98,10 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(publicDir, '404.html'));
 });
 
-app.listen(port, host, () => {
-  console.log(`Essenvian server listening on http://${host === '0.0.0.0' ? 'localhost' : host}:${port}`);
+// iisnode assigns PORT (often a Windows named pipe). Do not coerce it to a number
+// or bind a host — that breaks IIS deployment.
+const listenPort = process.env.PORT || port;
+
+app.listen(listenPort, () => {
+  console.log('Server started');
 });
