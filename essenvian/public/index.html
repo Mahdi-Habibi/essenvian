@@ -3,17 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Essenvian creates contemporary fragrance experiences and sensory design for global brands." />
+    <meta name="description" content="Essenvian is a fragrance and sensory design studio creating contemporary scent experiences for global brands across fine fragrance, personal care, and home care." />
+    <meta name="theme-color" content="#1f3d34" />
     <title>Essenvian | Creativity Through Science</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/static/style/global.css" />
     <link rel="stylesheet" href="/home/static/home/style/style.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
       <div class="container">
-        <nav class="navbar">
-          <figure class="navbar__logo"><span>ESSENVIAN</span></figure>
-          <button class="navbar__toggle" aria-label="Toggle menu">☰</button>
+        <nav class="navbar" aria-label="Primary">
+          <figure class="navbar__logo"><a href="/">ESSENVIAN</a></figure>
+          <button class="navbar__toggle" type="button" aria-label="Toggle menu">☰</button>
           <ul class="navbar__list">
             <li class="navbar__item"><a href="/" class="navbar__link">Home</a></li>
             <li class="navbar__item"><a href="/applications" class="navbar__link">Applications</a></li>
@@ -25,79 +30,150 @@
       </div>
     </header>
 
-    <main>
-      <section id="home" class="hero hero--video">
-        <video class="hero__video" autoplay muted loop playsinline>
-          <source src="/static/videos/demo_video.mp4" type="video/mp4" />
-        </video>
-        <div class="hero__overlay"></div>
-        <div class="container hero__inner">
-          <p class="eyebrow">Fragrance innovation, crafted with precision</p>
+    <main id="main">
+      <section class="hero" aria-label="Introduction">
+        <div class="hero__media" aria-hidden="true"></div>
+        <div class="hero__overlay" aria-hidden="true"></div>
+        <div class="hero__inner">
+          <p class="brand-mark">Essenvian</p>
           <h1 class="hero__title">Creativity Through Science</h1>
-          <p class="hero__subtitle">We design scent and sensorial experiences for brands that want to stand out with clarity, emotion, and lasting impact.</p>
-          <a class="button" href="#applications">Explore Applications</a>
+          <p class="hero__subtitle">We design fragrance systems and sensory experiences for brands that require precision, clarity, and enduring consumer impact.</p>
+          <div class="button-row">
+            <a class="button light" href="/applications">View Applications</a>
+            <a class="button on-dark" href="/contact">Request a Consultation</a>
+          </div>
         </div>
       </section>
 
-      <section id="about-preview" class="about-preview">
+      <section class="about-preview" aria-labelledby="studio-heading">
         <div class="container">
-          <h2>About ESSENVIAN</h2>
-          <p>We blend decades of formulation science with sensory design to craft distinctive fragrance systems for brands. Our process connects consumer insight, sustainable thinking, and creative storytelling to deliver memorable scent experiences.</p>
-          <div class="split">
+          <div class="split split--media">
             <div>
-              <h3>Our Approach</h3>
-              <p>From brief to launch we align product strategy with consumer perception, ensuring the fragrance enhances the product experience while meeting regulatory and sustainability goals.</p>
+              <p class="eyebrow section-kicker">Fragrance studio</p>
+              <h2 id="studio-heading">A disciplined approach to contemporary scent design</h2>
+              <p>Essenvian partners with product, marketing, and R&amp;D teams to translate brand strategy into olfactory systems that perform in market. From concept development to application testing, we connect formulation science with consumer perception and regulatory readiness.</p>
+              <p>Our work spans prestige fragrance launches, daily personal-care rituals, and long-lasting home-care delivery platforms — always with a clear brief, measurable criteria, and a formal development process.</p>
+              <a class="button" href="/about">About the studio</a>
             </div>
-            <div>
-              <h3>What We Deliver</h3>
-              <ul>
-                <li>Concept fragrance families and accords</li>
-                <li>Formulation support for product performance</li>
-                <li>Fragrance application testing and QA</li>
-              </ul>
+            <div class="split__media">
+              <img
+                src="/static/images/botanicals.jpg"
+                alt="Lavender (Lavandula angustifolia), a classic aromatic raw material used in fragrance"
+                width="1280"
+                height="853"
+                loading="lazy"
+              />
             </div>
           </div>
-          <a class="button" href="/about">Learn more about us</a>
+
+          <div class="stat-row" aria-label="Studio focus areas">
+            <div class="stat">
+              <p class="stat__value">3</p>
+              <p class="stat__label">Core application platforms for brand development</p>
+            </div>
+            <div class="stat">
+              <p class="stat__value">Grasse</p>
+              <p class="stat__label">Studio based in the historic centre of fragrance craft</p>
+            </div>
+            <div class="stat">
+              <p class="stat__value">End-to-end</p>
+              <p class="stat__label">From creative brief through stability and sensory QA</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="applications" class="cards">
+      <section id="applications" aria-labelledby="applications-heading">
         <div class="container">
-          <h2>Applications</h2>
-          <p>From prestige beauty to everyday rituals, our fragrance platforms are tailored to the product experience.</p>
-          <div class="card-grid">
-            <article class="card">
+          <div class="section-intro">
+            <p class="eyebrow section-kicker">Applications</p>
+            <h2 id="applications-heading">Fragrance platforms tailored to product experience</h2>
+            <p>Each category demands different volatility, substantivity, and regulatory considerations. We design accords and delivery systems that respect those constraints without compromising character.</p>
+          </div>
+          <div class="block-grid">
+            <article class="block">
+              <div class="block__media" aria-hidden="true"><span>01</span></div>
               <h3>Fine Fragrances</h3>
-              <p>Elegant compositions for signature perfumes and luxury launches.</p>
-              <a href="/applications">Discover more</a>
+              <p>Signature compositions, flankers, and collection architectures for prestige and niche launches, developed with narrative clarity and technical balance.</p>
+              <a href="/applications#fine-fragrances">Explore fine fragrance</a>
             </article>
-            <article class="card">
+            <article class="block">
+              <div class="block__media" aria-hidden="true"><span>02</span></div>
               <h3>Personal Care</h3>
-              <p>Fragrances built for body care, hair, and cosmetics with skin-friendly performance.</p>
-              <a href="/applications">Discover more</a>
+              <p>Skin-compatible scent systems for body care, haircare, and beauty rituals, including stability support and base-masking where required.</p>
+              <a href="/applications#personal-care">Explore personal care</a>
             </article>
-            <article class="card">
+            <article class="block">
+              <div class="block__media" aria-hidden="true"><span>03</span></div>
               <h3>Home Care</h3>
-              <p>Thoughtful scent systems for fabric care, cleaning, and sensory-led household products.</p>
-              <a href="/applications">Discover more</a>
+              <p>Durable scent systems for fabric care, cleaning, and air care, optimised for delivery, longevity, and consumer recognition.</p>
+              <a href="/applications#home-care">Explore home care</a>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="innovation" class="feature">
+      <section class="panel" aria-labelledby="process-heading">
         <div class="container">
-          <h2>Innovation</h2>
-          <p>We combine formulation expertise, sustainability thinking, and consumer insight to create modern fragrance solutions.</p>
-          <a href="/innovation" class="button secondary">Learn More</a>
+          <div class="section-intro">
+            <p class="eyebrow section-kicker">Engagement model</p>
+            <h2 id="process-heading">A structured path from brief to launch</h2>
+            <p>We work as an extension of your product team. Every engagement begins with clear success criteria and concludes with documentation suitable for manufacturing handoff.</p>
+          </div>
+          <div class="process-grid">
+            <div class="process-step">
+              <span class="process-step__num">01</span>
+              <h3>Brief &amp; Insight</h3>
+              <p>Market positioning, consumer cues, competitive mapping, and regulatory boundaries are defined before creative work begins.</p>
+            </div>
+            <div class="process-step">
+              <span class="process-step__num">02</span>
+              <h3>Concept Families</h3>
+              <p>Accord directions are developed as coherent families, enabling informed selection rather than isolated samples.</p>
+            </div>
+            <div class="process-step">
+              <span class="process-step__num">03</span>
+              <h3>Formulation</h3>
+              <p>Selected directions are refined for performance in your base, with attention to stability, cost, and sustainability goals.</p>
+            </div>
+            <div class="process-step">
+              <span class="process-step__num">04</span>
+              <h3>Validation</h3>
+              <p>Sensory evaluation and application testing confirm consumer-facing quality before scale-up recommendations.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="contact" class="contact">
+      <section aria-labelledby="innovation-preview-heading">
         <div class="container">
-          <h2>Contact</h2>
-          <p>Let’s build a scent story your customers will remember.</p>
-          <a href="/contact" class="button">Get in Touch</a>
+          <div class="split split--media">
+            <div class="split__media">
+              <img src="/static/images/innovation-lab.jpg" alt="Pipetting into laboratory tubes during fragrance research and development" width="1400" height="933" loading="lazy" />
+            </div>
+            <div>
+              <p class="eyebrow section-kicker">Innovation</p>
+              <h2 id="innovation-preview-heading">Material science in service of sensory benefit</h2>
+              <p>Our innovation practice focuses on responsible raw materials, controlled-release systems, and rapid prototyping methods that shorten the path from hypothesis to validated experience.</p>
+              <ul class="detail-list" style="margin: 2rem 0 2.4rem;">
+                <li>Green ingredient scouting and substitution strategies</li>
+                <li>Encapsulation and substantivity programmes</li>
+                <li>Sensory protocols aligned with product claims</li>
+              </ul>
+              <a class="button secondary" href="/innovation">Innovation capabilities</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel--accent cta-band" aria-labelledby="contact-cta-heading">
+        <div class="container">
+          <div class="cta-band__copy">
+            <p class="eyebrow section-kicker" style="color: rgba(255,255,255,0.7);">Next step</p>
+            <h2 id="contact-cta-heading">Commission a fragrance direction with formal clarity</h2>
+            <p>Share your brief, timeline, and performance requirements. We will advise on feasibility, development scope, and recommended next steps.</p>
+          </div>
+          <a class="button light" href="/contact">Contact the studio</a>
         </div>
       </section>
     </main>
@@ -105,8 +181,8 @@
     <footer class="site-footer">
       <div class="container footer__inner">
         <div class="footer__col footer__brand">
-          <figure class="navbar__logo"><span>ESSENVIAN</span></figure>
-          <p class="footer__desc">Creativity through science — fragrance &amp; sensory design for brands.</p>
+          <figure class="navbar__logo"><a href="/">ESSENVIAN</a></figure>
+          <p class="footer__desc">Creativity through science — fragrance and sensory design for brands that require precision and lasting impact.</p>
         </div>
         <div class="footer__col footer__links">
           <h4>Explore</h4>
@@ -119,22 +195,22 @@
           </ul>
         </div>
         <div class="footer__col footer__contact">
-          <h4>Contact</h4>
-          <p><a href="mailto:hello@essenvian.example">hello@essenvian.example</a></p>
+          <h4>Studio</h4>
+          <p>48 Av. Louison Bobet<br />06130 Grasse, France</p>
+          <p><a href="mailto:hello@essenvian.com">hello@essenvian.com</a></p>
+          <p><a href="tel:+33492878400">+33 (0)4 92 87 84 00</a></p>
         </div>
         <div class="footer__col footer__social">
           <h4>Follow</h4>
           <ul class="social-list">
-            <li><a href="https://instagram.com/essenvian" aria-label="Instagram" class="social-link social-instagram">Instagram</a></li>
-            <li><a href="https://t.me/essenvian" aria-label="Telegram" class="social-link social-telegram">Telegram</a></li>
-            <li><a href="https://wa.me/1234567890" aria-label="WhatsApp" class="social-link social-whatsapp">WhatsApp</a></li>
-            <li><a href="https://youtube.com/" aria-label="YouTube" class="social-link social-youtube">YouTube</a></li>
-            <li><a href="https://facebook.com/essenvian" aria-label="Facebook" class="social-link social-facebook">Facebook</a></li>
+            <li><a href="https://instagram.com/essenvian" aria-label="Instagram" class="social-link" rel="noopener noreferrer" target="_blank">IG</a></li>
+            <li><a href="https://www.linkedin.com/" aria-label="LinkedIn" class="social-link" rel="noopener noreferrer" target="_blank">IN</a></li>
+            <li><a href="https://wa.me/33492878400" aria-label="WhatsApp" class="social-link" rel="noopener noreferrer" target="_blank">WA</a></li>
           </ul>
         </div>
       </div>
       <div class="container footer__bottom">
-        <small>&copy; ESSENVIAN — All rights reserved</small>
+        <small>&copy; 2026 Essenvian. All rights reserved.</small>
       </div>
     </footer>
 

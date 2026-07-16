@@ -1,13 +1,14 @@
 # Essenvian
 
-A polished marketing website for Essenvian, converted to a Node.js/Express application while preserving the original pages, styling, and contact form flow.
+A professional marketing website for Essenvian, a fragrance and sensory design studio. Built with Node.js and Express.
 
 ## Features
 
-- Responsive landing page and content pages
-- Static assets served from the existing project structure
-- Contact form that stores submissions in JSON
-- Health check endpoint at /health
+- Responsive home, applications, innovation, about, and contact pages
+- Formal brand presentation with curated category imagery
+- Contact form with validation, sanitisation, and basic rate limiting
+- Messages stored as JSON in the local `data` directory
+- Health check at `/health`
 
 ## Run locally
 
@@ -16,10 +17,17 @@ npm install
 npm start
 ```
 
-The app will be available at http://localhost:3000.
+The application is available at [http://localhost:3000](http://localhost:3000).
 
-## Production hosting notes
+## Environment
 
-- Set the PORT environment variable in the hosting platform.
-- Ensure the server process runs npm start.
-- The app uses a writable data directory for message persistence.
+Copy `.env.example` if you need local overrides:
+
+- `PORT` — defaults to `3000`
+- `HOST` — defaults to `0.0.0.0`
+
+## Production notes
+
+- Set `PORT` in the hosting platform.
+- Ensure the process can write to `data/` for contact message persistence.
+- Run with `npm start`.

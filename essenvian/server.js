@@ -1,25 +1,49 @@
 const express = require('express');
 const path = require('path');
-const { port, publicDir, staticDir, homeStaticDir } = require('./config');
-const { saveMessage } = require('./data/contactStore');
-const { renderPage } = require('./public/pages/page-template');
+const { port, host, publicDir, staticDir, homeStaticDir } = require('./config');
+const { saveMessage, validateMessage } = require('./data/contactStore');
+const { renderPage, escapeHtml } = require('./public/pages/page-template');
 
 const app = express();
-const host = process.env.HOST || '0.0.0.0';
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const contactAttempts = new Map();
+const RATE_WINDOW_MS = 15 * 60 * 1000;
+const RATE_LIMIT = 8;
 
-app.use('/static', express.static(staticDir));
-app.use('/home/static', express.static(homeStaticDir));
+app.use(express.urlencoded({ extended: true, limit: '32kb' }));
+app.use(express.json({ limit: '32kb' }));
+
+app.use('/static', express.static(staticDir, { maxAge: '7d' }));
+app.use('/home/static', express.static(homeStaticDir, { maxAge: '7d' }));
 app.use(express.static(publicDir));
 
-function renderContactPage(res, submitted = false) {
-  const successBanner = submitted
-    ? '<div class="success-banner">Thanks — your message has been sent.</div>'
+function getClientIp(req) {
+  return req.headers['x-forwarded-for']?.toString().split(',')[0].trim() || req.socket.remoteAddress || 'unknown';
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = contactAttempts.get(ip) || { count: 0, start: now };
+
+  if (now - entry.start > RATE_WINDOW_MS) {
+    contactAttempts.set(ip, { count: 1, start: now });
+    return false;
+  }
+
+  entry.count += 1;
+  contactAttempts.set(ip, entry);
+  return entry.count > RATE_LIMIT;
+}
+
+function renderContactPage(res, options = {}) {
+  const successBanner = options.submitted
+    ? '<div class="success-banner" role="status">Thank you. Your enquiry has been received. Our team will respond within two business days.</div>'
+    : '';
+  const errorBanner = options.error
+    ? `<div class="error-banner" role="alert">${escapeHtml(options.error)}</div>`
     : '';
 
-  renderPage(res, 'contact', { successBanner });
+  renderPage(res, 'contact', { successBanner, errorBanner });
 }
 
 app.get('/', (req, res) => {
@@ -39,24 +63,31 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
-  renderContactPage(res, req.query.submitted === '1');
+  renderContactPage(res, { submitted: req.query.submitted === '1' });
 });
 
 app.post('/contact', (req, res) => {
-  const { name, email, message } = req.body;
+  const ip = getClientIp(req);
 
-  if (!name || !email || !message) {
-    return res.status(400).send('Please fill in all contact fields.');
+  if (isRateLimited(ip)) {
+    return renderContactPage(res.status(429), {
+      error: 'Too many submissions from this network. Please try again later.',
+    });
+  }
+
+  const result = validateMessage(req.body || {});
+
+  if (!result.ok) {
+    return renderContactPage(res.status(400), { error: result.error });
   }
 
   saveMessage({
-    name,
-    email,
-    message,
+    ...result.data,
     createdAt: new Date().toISOString(),
+    ip,
   });
 
-  res.redirect('/contact?submitted=1');
+  res.redirect(303, '/contact?submitted=1');
 });
 
 app.get('/health', (req, res) => {
@@ -67,6 +98,6 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(publicDir, '404.html'));
 });
 
-app.listen(process.env.PORT || 4000, () => {
-    console.log('Server started');
+app.listen(port, host, () => {
+  console.log(`Essenvian server listening on http://${host === '0.0.0.0' ? 'localhost' : host}:${port}`);
 });

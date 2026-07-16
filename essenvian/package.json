@@ -1,7 +1,7 @@
 {
   "name": "essenvian-node",
-  "version": "1.0.0",
-  "description": "Node.js version of the Essenvian marketing site",
+  "version": "1.1.0",
+  "description": "Essenvian fragrance studio marketing website (Node.js / Express)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

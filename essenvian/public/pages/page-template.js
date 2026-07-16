@@ -2,6 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const { publicDir } = require('../../config');
 
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function renderPage(res, pageName, options = {}) {
   const pagePath = path.join(publicDir, `${pageName}.html`);
 
@@ -17,8 +25,14 @@ function renderPage(res, pageName, options = {}) {
       updatedHtml = updatedHtml.replace('<!-- CONTACT_SUCCESS -->', options.successBanner);
     }
 
+    if (options.errorBanner) {
+      updatedHtml = updatedHtml.replace('<!-- CONTACT_ERROR -->', options.errorBanner);
+    } else {
+      updatedHtml = updatedHtml.replace('<!-- CONTACT_ERROR -->', '');
+    }
+
     res.send(updatedHtml);
   });
 }
 
-module.exports = { renderPage };
+module.exports = { renderPage, escapeHtml };

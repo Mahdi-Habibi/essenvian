@@ -3,16 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About Essenvian — a Grasse-based fragrance and sensory design studio combining formulation science, consumer insight, and formal development practice." />
     <title>About | Essenvian</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/static/style/global.css" />
     <link rel="stylesheet" href="/home/static/home/style/style.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header>
       <div class="container">
-        <nav class="navbar">
-          <figure class="navbar__logo"><span>ESSENVIAN</span></figure>
-          <button class="navbar__toggle" aria-label="Toggle menu">☰</button>
+        <nav class="navbar" aria-label="Primary">
+          <figure class="navbar__logo"><a href="/">ESSENVIAN</a></figure>
+          <button class="navbar__toggle" type="button" aria-label="Toggle menu">☰</button>
           <ul class="navbar__list">
             <li class="navbar__item"><a href="/" class="navbar__link">Home</a></li>
             <li class="navbar__item"><a href="/applications" class="navbar__link">Applications</a></li>
@@ -24,30 +29,93 @@
       </div>
     </header>
 
-    <main>
-      <section class="page about">
+    <main id="main">
+      <section class="page-hero">
         <div class="container">
-          <h1>About ESSENVIAN</h1>
-          <p>ESSENVIAN is a specialist fragrance and sensorial design studio that partners with global brands to create purposeful olfactory experiences. Combining R&D, material expertise and consumer insight, we design scents that elevate product storytelling.</p>
+          <p class="eyebrow">About</p>
+          <h1>A specialist studio for purposeful olfactory design</h1>
+          <p>Essenvian is a fragrance and sensory design studio based in Grasse, France. We partner with global brands to create olfactory experiences that strengthen product strategy, storytelling, and in-use performance.</p>
+        </div>
+      </section>
 
-          <h2>Our Mission</h2>
-          <p>To bring clarity and creativity to fragrance development while prioritizing safety and sustainability. We aim to make scent a strategic asset for product teams.</p>
-
-          <h2>Our Team</h2>
-          <div class="team-grid">
-            <div class="team-member">
-              <h3>Dr. L. Thompson</h3>
-              <p>Head of Formulation — 15 years in fragrance chemistry and product performance.</p>
+      <section class="page-section">
+        <div class="container">
+          <div class="split split--media">
+            <div>
+              <p class="eyebrow">Studio</p>
+              <h2>Creativity governed by scientific rigour</h2>
+              <p>Our practice unites formulation expertise, material knowledge, and consumer insight. We treat fragrance as a strategic asset — one that must be designed with the same discipline applied to packaging, claims, and product architecture.</p>
+              <p>Working from Grasse places us within a heritage of aromatic craft while operating with contemporary methods: documented briefs, measurable criteria, and clear handoff to manufacturing partners.</p>
             </div>
-            <div class="team-member">
-              <h3>M. Rivera</h3>
-              <p>Sensory Designer — leads consumer insight and olfactory storytelling.</p>
-            </div>
-            <div class="team-member">
-              <h3>A. Chen</h3>
-              <p>Innovation Lead — blends novel materials with sustainable design.</p>
+            <div class="split__media">
+              <img src="/static/images/botanicals.jpg" alt="Lavender (Lavandula angustifolia), a classic aromatic material in fragrance" width="1400" height="933" loading="lazy" />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="page-section panel">
+        <div class="container">
+          <div class="section-intro">
+            <p class="eyebrow">Mission</p>
+            <h2>Clarity, creativity, safety, and sustainability</h2>
+            <p>We aim to make scent a dependable instrument for product teams — distinctive where it must be, restrained where it should be, and always accountable to safety and environmental expectations.</p>
+          </div>
+          <div class="values-grid">
+            <article class="value-item">
+              <h3>Clarity</h3>
+              <p>Every recommendation is tied to a brief, a consumer cue, or a technical constraint. Ambiguity is reduced through structured options and documented decisions.</p>
+            </article>
+            <article class="value-item">
+              <h3>Creativity</h3>
+              <p>Distinctive olfactive character remains essential. We pursue originality within frameworks that protect brand coherence and commercial viability.</p>
+            </article>
+            <article class="value-item">
+              <h3>Safety</h3>
+              <p>Regulatory awareness and responsible use of materials are integral to development, not appended after creative selection.</p>
+            </article>
+            <article class="value-item">
+              <h3>Sustainability</h3>
+              <p>We evaluate ingredient choices, substitution paths, and process implications so sustainability goals are practical rather than decorative.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section">
+        <div class="container">
+          <div class="section-intro">
+            <p class="eyebrow">Leadership</p>
+            <h2>Multidisciplinary practice</h2>
+            <p>Projects are led by specialists who cover formulation, sensory design, and innovation strategy, ensuring creative and technical accountability throughout the engagement.</p>
+          </div>
+          <div class="team-grid">
+            <article class="team-member">
+              <p class="team-member__role">Head of Formulation</p>
+              <h3>Dr. L. Thompson</h3>
+              <p>Leads chemistry and product-performance programmes, with more than fifteen years across fragrance formulation, application testing, and industrial handoff.</p>
+            </article>
+            <article class="team-member">
+              <p class="team-member__role">Sensory Design</p>
+              <h3>M. Rivera</h3>
+              <p>Directs consumer insight and olfactory storytelling, translating brand narratives into evaluable scent directions and sensory protocols.</p>
+            </article>
+            <article class="team-member">
+              <p class="team-member__role">Innovation Lead</p>
+              <h3>A. Chen</h3>
+              <p>Advances material and delivery research, connecting novel approaches with sustainability requirements and manufacturable outcomes.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel--accent cta-band">
+        <div class="container">
+          <div class="cta-band__copy">
+            <h2>Work with Essenvian</h2>
+            <p>If you are building a fragrance platform or refining an existing line, we welcome a formal introduction to your brief.</p>
+          </div>
+          <a class="button light" href="/contact">Contact the studio</a>
         </div>
       </section>
     </main>
@@ -55,8 +123,8 @@
     <footer class="site-footer">
       <div class="container footer__inner">
         <div class="footer__col footer__brand">
-          <figure class="navbar__logo"><span>ESSENVIAN</span></figure>
-          <p class="footer__desc">Creativity through science — fragrance &amp; sensory design for brands.</p>
+          <figure class="navbar__logo"><a href="/">ESSENVIAN</a></figure>
+          <p class="footer__desc">Creativity through science — fragrance and sensory design for brands that require precision and lasting impact.</p>
         </div>
         <div class="footer__col footer__links">
           <h4>Explore</h4>
@@ -69,22 +137,22 @@
           </ul>
         </div>
         <div class="footer__col footer__contact">
-          <h4>Contact</h4>
-          <p><a href="mailto:hello@essenvian.example">hello@essenvian.example</a></p>
+          <h4>Studio</h4>
+          <p>48 Av. Louison Bobet<br />06130 Grasse, France</p>
+          <p><a href="mailto:hello@essenvian.com">hello@essenvian.com</a></p>
+          <p><a href="tel:+33492878400">+33 (0)4 92 87 84 00</a></p>
         </div>
         <div class="footer__col footer__social">
           <h4>Follow</h4>
           <ul class="social-list">
-            <li><a href="https://instagram.com/essenvian" aria-label="Instagram" class="social-link social-instagram">Instagram</a></li>
-            <li><a href="https://t.me/essenvian" aria-label="Telegram" class="social-link social-telegram">Telegram</a></li>
-            <li><a href="https://wa.me/1234567890" aria-label="WhatsApp" class="social-link social-whatsapp">WhatsApp</a></li>
-            <li><a href="https://youtube.com/" aria-label="YouTube" class="social-link social-youtube">YouTube</a></li>
-            <li><a href="https://facebook.com/essenvian" aria-label="Facebook" class="social-link social-facebook">Facebook</a></li>
+            <li><a href="https://instagram.com/essenvian" aria-label="Instagram" class="social-link" rel="noopener noreferrer" target="_blank">IG</a></li>
+            <li><a href="https://www.linkedin.com/" aria-label="LinkedIn" class="social-link" rel="noopener noreferrer" target="_blank">IN</a></li>
+            <li><a href="https://wa.me/33492878400" aria-label="WhatsApp" class="social-link" rel="noopener noreferrer" target="_blank">WA</a></li>
           </ul>
         </div>
       </div>
       <div class="container footer__bottom">
-        <small>&copy; ESSENVIAN — All rights reserved</small>
+        <small>&copy; 2026 Essenvian. All rights reserved.</small>
       </div>
     </footer>
 

@@ -31,3 +31,7 @@ Thumbs.db
 *.air
 *.ipa
 *.apk
+
+# Contact form runtime data
+data/contact-messages.json
+data/contact-messages.backup.*.json

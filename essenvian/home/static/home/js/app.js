@@ -2,107 +2,112 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.navbar__toggle');
   const menu = document.querySelector('.navbar__list');
 
-  if (!toggle || !menu) {
-    return;
-  }
-
   const setMenuState = (isOpen) => {
+    if (!menu || !toggle) return;
     menu.classList.toggle('is-open', isOpen);
     toggle.setAttribute('aria-expanded', String(isOpen));
   };
 
-  toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    setMenuState(!expanded);
-  });
+  if (toggle && menu) {
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'primary-navigation');
+    menu.id = menu.id || 'primary-navigation';
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      setMenuState(false);
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      setMenuState(!expanded);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        setMenuState(false);
+      }
+    });
+  }
+
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('.navbar__link').forEach((link) => {
+    try {
+      const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '') || '/';
+      if (linkPath === currentPath) {
+        link.classList.add('is-active');
+        link.setAttribute('aria-current', 'page');
+      }
+    } catch {
+      /* ignore malformed links */
     }
   });
 
-  // Page enter animation: start with hidden then remove class to fade in
   document.body.classList.add('page-enter');
-  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.remove('page-enter')));
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => document.body.classList.remove('page-enter'));
+  });
 
-  // Intercept internal link clicks to play a fade-out then navigate
   document.addEventListener('click', (ev) => {
     const a = ev.target.closest && ev.target.closest('a');
     if (!a) return;
-    const href = a.getAttribute('href');
-    if (!href) return;
 
-    // Ignore anchors, external links, and new-tab navigation
-    if (href.startsWith('#')) return;
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
     if (a.target === '_blank' || ev.metaKey || ev.ctrlKey || ev.shiftKey) return;
+
     try {
       const url = new URL(a.href, location.href);
-      if (url.origin !== location.origin) return; // external
-    } catch (e) {
-      return; // malformed URL
+      if (url.origin !== location.origin) return;
+      if (url.pathname === location.pathname && url.hash) return;
+    } catch {
+      return;
     }
 
     ev.preventDefault();
     document.body.classList.add('page-exit');
-    // match CSS transition duration (ms)
-    const delay = 450;
-    setTimeout(() => (window.location.href = a.href), delay);
+    setTimeout(() => {
+      window.location.href = a.href;
+    }, 420);
   });
 
-  // Fade-up per-section animation (once per section until reload)
   const sections = Array.from(document.querySelectorAll('main section, footer'));
   const animateClass = 'animate-fade-up';
   const inViewClass = 'in-view';
 
   const getSectionTargets = (section) => {
-    // select typical visible children: direct children and container children and cards
-    const nodes = Array.from(section.querySelectorAll(':scope > * , .container > * , .card'));
-    // exclude video and other non-visual elements
+    const nodes = Array.from(section.querySelectorAll(':scope > *, .container > *, .block, .capability, .process-step, .team-member, .value-item'));
     return nodes.filter((el) => {
-      const t = (el.tagName || '').toLowerCase();
-      if (t === 'video' || t === 'source' || t === 'track' || t === 'svg') return false;
-      return true;
+      const tag = (el.tagName || '').toLowerCase();
+      return !['video', 'source', 'track', 'svg', 'style', 'script'].includes(tag);
     });
   };
 
-  // Apply initial hidden state to targets
   sections.forEach((section) => {
-    const nodeList = getSectionTargets(section);
-    nodeList.forEach((el) => el.classList.add(animateClass));
+    getSectionTargets(section).forEach((el) => el.classList.add(animateClass));
   });
 
   const animateTargets = (targets) => {
     targets.forEach((el, i) => {
       if (el.dataset.animated === 'true') return;
-      el.style.setProperty('--delay', `${i * 80}ms`);
+      el.style.setProperty('--delay', `${i * 70}ms`);
       el.classList.add(inViewClass);
       el.dataset.animated = 'true';
     });
   };
 
-  // Animate first section immediately on load
   const first = sections[0];
   if (first) {
-    const firstTargets = getSectionTargets(first);
-    animateTargets(firstTargets);
+    animateTargets(getSectionTargets(first));
   }
 
   const observer = new IntersectionObserver(
     (entries, obs) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const targets = getSectionTargets(entry.target);
-          animateTargets(targets);
-          obs.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        animateTargets(getSectionTargets(entry.target));
+        obs.unobserve(entry.target);
       });
     },
-    { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+    { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
   );
 
-  sections.forEach((s) => {
-    if (s === first) return;
-    observer.observe(s);
+  sections.forEach((section) => {
+    if (section !== first) observer.observe(section);
   });
 });
